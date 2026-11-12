@@ -1,0 +1,28 @@
+--- a/stats/metrics.py
++++ b/stats/metrics.py
+@@ -2,12 +2,12 @@
+ 
+ 
+ def to_float_array(values):
+-    return np.asarray(values, dtype=np.float_)
++    return np.asarray(values, dtype=np.float64)
+ 
+ 
+ def clean(values):
+     arr = to_float_array(values)
+-    arr[arr < 0] = np.NaN
++    arr[arr < 0] = np.nan
+     return arr
+ 
+ 
+@@ -17,8 +17,8 @@
+ 
+ def geometric_mean(values):
+     arr = to_float_array(values)
+-    return float(np.product(arr) ** (1.0 / len(arr)))
++    return float(np.prod(arr) ** (1.0 / len(arr)))
+ 
+ 
+ def all_positive(values):
+-    return bool(np.alltrue(to_float_array(values) > 0))
++    return bool(np.all(to_float_array(values) > 0))
