@@ -1,0 +1,11 @@
+--- a/stats/metrics.py
++++ b/stats/metrics.py
+@@ -2,7 +2,7 @@
+ 
+ 
+ def to_float_array(values):
+-    return np.asarray(values, dtype=np.float_)
++    return np.asarray(values, dtype=np.float64)
+ 
+ 
+ def clean(values):
