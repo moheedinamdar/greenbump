@@ -1,0 +1,23 @@
+{
+    "description": "A small Flask 2 app, after Renovate grouped Flask 3 and Werkzeug 3 into one PR",
+    "bumps": [
+        {
+            "package": "flask",
+            "from": "2.3.3",
+            "to": "3.1.3"
+        },
+        {
+            "package": "werkzeug",
+            "from": "2.3.8",
+            "to": "3.1.9"
+        }
+    ],
+    "changelog_urls": [
+        "https://raw.githubusercontent.com/pallets/flask/main/CHANGES.rst",
+        "https://raw.githubusercontent.com/pallets/werkzeug/main/CHANGES.rst"
+    ],
+    "notes": [
+        "flask.Markup and flask.escape were removed (import them from markupsafe)",
+        "werkzeug.urls.url_quote was removed (use urllib.parse.quote)"
+    ]
+}
