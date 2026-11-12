@@ -1,0 +1,19 @@
+--- a/accounts/schemas.py
++++ b/accounts/schemas.py
+@@ -4,8 +4,8 @@
+ class UserSchema(Schema):
+     name = fields.Str(required=True)
+     email = fields.Email(required=True)
+-    role = fields.Str(missing="viewer")
+-    active = fields.Bool(default=True)
++    role = fields.Str(load_default="viewer")
++    active = fields.Bool()
+     display = fields.Method("get_display", dump_only=True)
+ 
+     def get_display(self, obj):
+@@ -23,4 +23,4 @@
+ 
+ 
+ def dump_user(user, prefix=""):
+-    return UserSchema(context={"prefix": prefix}).dump(user)
++    return UserSchema().dump(user)
