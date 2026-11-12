@@ -1,0 +1,19 @@
+--- a/webapp/app.py
++++ b/webapp/app.py
+@@ -1,5 +1,6 @@
+-from flask import Flask, Markup, escape, request
+-from werkzeug.urls import url_quote
++from flask import Flask, request
++from markupsafe import Markup, escape
++from urllib.parse import quote
+ 
+ 
+ def create_app():
+@@ -13,6 +14,6 @@
+     @app.get("/link")
+     def link():
+         query = request.args.get("q", "")
+-        return f'<a href="/search?q={url_quote(query)}">{escape(query)}</a>'
++        return f'<a href="/search?q={quote(query)}">{escape(query)}</a>'
+ 
+     return app
