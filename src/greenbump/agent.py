@@ -128,7 +128,9 @@ def run_agent(
         )
         for call in reply.tool_calls:
             result = toolbox.call(call.name, call.arguments)
-            signature = json.dumps([call.name, call.arguments], sort_keys=True)
+            # Ignore explicit defaults such as replace_all=false, so near-identical repeats still count.
+            meaningful = {k: v for k, v in call.arguments.items() if v not in (False, None, "")}
+            signature = json.dumps([call.name, meaningful], sort_keys=True)
             failed = result.text.startswith(("ERROR", "REFUSED"))
             repeats = repeats + 1 if failed and signature == last_failure else 0
             last_failure = signature if failed else ""
