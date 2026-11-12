@@ -1,0 +1,37 @@
+{
+  "mode": "agent",
+  "model": "ollama:qwen2.5:7b",
+  "verified": true,
+  "stop_reason": "finish",
+  "summary": "Replaced `np.float_` with `np.float64`, `np.NaN` with `np.nan`, `np.product` with `np.prod`, and `np.alltrue` with `np.all`.",
+  "reasons": [],
+  "tests_before": "0 passed, 5 failed, 0 errors",
+  "tests_after": "5 passed, 0 failed, 0 errors",
+  "tests_passed": 5,
+  "tests_expected": 5,
+  "changed_files": [
+    "stats/metrics.py"
+  ],
+  "steps": 11,
+  "llm_calls": 11,
+  "prompt_tokens": 76590,
+  "completion_tokens": 516,
+  "seconds": 91.7,
+  "edits_applied": 4,
+  "edits_refused": 0,
+  "test_runs": 7,
+  "guardrail_hits": [],
+  "changelog_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/numpy/numpy/main/doc/source/numpy_2_0_migration_guide.rst",
+      "sha256": "8a911a273a400817cdadeaab4cc2649713a7ca114361d30ef7663e96bf06790b"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/numpy/numpy/main/doc/source/release/2.0.0-notes.rst",
+      "sha256": "d4dc3c3c8cb8dc1d21942aba679a928b440449a90f82a817cc2ee7fce9f31b61"
+    }
+  ],
+  "warnings": [],
+  "error": "",
+  "diff": "--- a/stats/metrics.py\n+++ b/stats/metrics.py\n@@ -2,12 +2,12 @@\n \n \n def to_float_array(values):\n-    return np.asarray(values, dtype=np.float_)\n+    return np.asarray(values, dtype=np.float64)\n \n \n def clean(values):\n     arr = to_float_array(values)\n-    arr[arr < 0] = np.NaN\n+    arr[arr < 0] = np.nan\n     return arr\n \n \n@@ -17,8 +17,8 @@\n \n def geometric_mean(values):\n     arr = to_float_array(values)\n-    return float(np.product(arr) ** (1.0 / len(arr)))\n+    return float(np.prod(arr) ** (1.0 / len(arr)))\n \n \n def all_positive(values):\n-    return bool(np.alltrue(to_float_array(values) > 0))\n+    return bool(np.all(to_float_array(values) > 0))\n"
+}
