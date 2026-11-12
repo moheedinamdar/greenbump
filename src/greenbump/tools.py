@@ -153,7 +153,10 @@ class Toolbox:
             return ToolResult(f"REFUSED: {reason}. Change the application code to use the new API instead.")
         old, new = str(args["old_text"]), str(args["new_text"])
         if old == new:
-            raise ValueError("new_text is identical to old_text, so this edit changes nothing")
+            raise ValueError(
+                "new_text is identical to old_text, so this edit changes nothing. If a test error says a "
+                "name cannot be imported from a module, that import line is the code that has to change."
+            )
         before = self.ws.read(rel_path)
         count = self.ws.replace(rel_path, old, new, bool(args.get("replace_all", False)))
         after = self.ws.read(rel_path)
@@ -222,6 +225,7 @@ class Toolbox:
             for query in error_queries(run.output, self.bumps, limit=4):
                 passages += [p for p in self.index.search(query, k=1) if p not in passages]
             if passages:
+                passages.sort(key=lambda p: p.score, reverse=True)
                 parts += ["", "Changelog passages matching these errors:", render_passages(passages[:3])]
         parts += ["", "Full output:", truncate_middle(run.output.strip(), 2500)]
         return "\n".join(parts)
