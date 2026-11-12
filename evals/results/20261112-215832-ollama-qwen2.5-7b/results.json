@@ -1,0 +1,287 @@
+{
+  "meta": {
+    "started": "2026-11-12T16:28:32+00:00",
+    "finished": "2026-11-12T16:57:17+00:00",
+    "greenbump": "0.1.0",
+    "model": "ollama:qwen2.5:7b",
+    "python": "3.13.18",
+    "platform": "macOS-26.7.2",
+    "modes": [
+      "single-shot",
+      "agent"
+    ],
+    "repeats": 1,
+    "budget": {
+      "max_steps": 30,
+      "max_seconds": 900.0
+    }
+  },
+  "runs": [
+    {
+      "case": "flask-v3",
+      "repeat": 1,
+      "mode": "single-shot",
+      "verified": false,
+      "stop_reason": "answered",
+      "tests_after": "0 passed, 0 failed, 1 errors",
+      "tests_passed": 0,
+      "tests_expected": 3,
+      "steps": 1,
+      "llm_calls": 1,
+      "prompt_tokens": 1762,
+      "completion_tokens": 84,
+      "seconds": 10.0,
+      "edits_applied": 1,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "webapp/app.py"
+      ]
+    },
+    {
+      "case": "flask-v3",
+      "repeat": 1,
+      "mode": "agent",
+      "verified": true,
+      "stop_reason": "finish",
+      "tests_after": "3 passed, 0 failed, 0 errors",
+      "tests_passed": 3,
+      "tests_expected": 3,
+      "steps": 16,
+      "llm_calls": 16,
+      "prompt_tokens": 85748,
+      "completion_tokens": 1329,
+      "seconds": 146.1,
+      "edits_applied": 5,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "webapp/app.py"
+      ]
+    },
+    {
+      "case": "marshmallow-v4",
+      "repeat": 1,
+      "mode": "single-shot",
+      "verified": false,
+      "stop_reason": "answered",
+      "tests_after": "0 passed, 0 failed, 1 errors",
+      "tests_passed": 0,
+      "tests_expected": 4,
+      "steps": 1,
+      "llm_calls": 1,
+      "prompt_tokens": 2388,
+      "completion_tokens": 83,
+      "seconds": 74.2,
+      "edits_applied": 1,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "accounts/schemas.py"
+      ]
+    },
+    {
+      "case": "marshmallow-v4",
+      "repeat": 1,
+      "mode": "agent",
+      "verified": false,
+      "stop_reason": "give_up",
+      "tests_after": "0 passed, 4 failed, 0 errors",
+      "tests_passed": 0,
+      "tests_expected": 4,
+      "steps": 19,
+      "llm_calls": 19,
+      "prompt_tokens": 120618,
+      "completion_tokens": 2193,
+      "seconds": 218.7,
+      "edits_applied": 4,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "accounts/schemas.py"
+      ]
+    },
+    {
+      "case": "numpy-v2",
+      "repeat": 1,
+      "mode": "single-shot",
+      "verified": false,
+      "stop_reason": "answered",
+      "tests_after": "1 passed, 4 failed, 0 errors",
+      "tests_passed": 1,
+      "tests_expected": 5,
+      "steps": 1,
+      "llm_calls": 1,
+      "prompt_tokens": 3807,
+      "completion_tokens": 78,
+      "seconds": 79.4,
+      "edits_applied": 1,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "stats/metrics.py"
+      ]
+    },
+    {
+      "case": "numpy-v2",
+      "repeat": 1,
+      "mode": "agent",
+      "verified": true,
+      "stop_reason": "finish",
+      "tests_after": "5 passed, 0 failed, 0 errors",
+      "tests_passed": 5,
+      "tests_expected": 5,
+      "steps": 11,
+      "llm_calls": 11,
+      "prompt_tokens": 76590,
+      "completion_tokens": 516,
+      "seconds": 91.7,
+      "edits_applied": 4,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "stats/metrics.py"
+      ]
+    },
+    {
+      "case": "pandas-v3",
+      "repeat": 1,
+      "mode": "single-shot",
+      "verified": false,
+      "stop_reason": "answered",
+      "tests_after": "0 passed, 3 failed, 0 errors",
+      "tests_passed": 0,
+      "tests_expected": 3,
+      "steps": 1,
+      "llm_calls": 1,
+      "prompt_tokens": 4136,
+      "completion_tokens": 236,
+      "seconds": 90.0,
+      "edits_applied": 2,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "ledger/report.py",
+        "tests/test_report.py"
+      ]
+    },
+    {
+      "case": "pandas-v3",
+      "repeat": 1,
+      "mode": "agent",
+      "verified": false,
+      "stop_reason": "step-budget",
+      "tests_after": "2 passed, 1 failed, 0 errors",
+      "tests_passed": 2,
+      "tests_expected": 3,
+      "steps": 30,
+      "llm_calls": 30,
+      "prompt_tokens": 253943,
+      "completion_tokens": 2657,
+      "seconds": 276.9,
+      "edits_applied": 5,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "ledger/report.py",
+        "tests/test_report.py"
+      ]
+    },
+    {
+      "case": "pydantic-v2",
+      "repeat": 1,
+      "mode": "single-shot",
+      "verified": false,
+      "stop_reason": "answered",
+      "tests_after": "0 passed, 0 failed, 1 errors",
+      "tests_passed": 0,
+      "tests_expected": 7,
+      "steps": 1,
+      "llm_calls": 1,
+      "prompt_tokens": 2571,
+      "completion_tokens": 110,
+      "seconds": 49.6,
+      "edits_applied": 1,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "inventory/models.py"
+      ]
+    },
+    {
+      "case": "pydantic-v2",
+      "repeat": 1,
+      "mode": "agent",
+      "verified": false,
+      "stop_reason": "step-budget",
+      "tests_after": "0 passed, 0 failed, 1 errors",
+      "tests_passed": 0,
+      "tests_expected": 7,
+      "steps": 30,
+      "llm_calls": 30,
+      "prompt_tokens": 181870,
+      "completion_tokens": 4184,
+      "seconds": 288.1,
+      "edits_applied": 1,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "inventory/models.py"
+      ]
+    },
+    {
+      "case": "sqlalchemy-v2",
+      "repeat": 1,
+      "mode": "single-shot",
+      "verified": false,
+      "stop_reason": "answered",
+      "tests_after": "0 passed, 3 failed, 0 errors",
+      "tests_passed": 0,
+      "tests_expected": 3,
+      "steps": 1,
+      "llm_calls": 1,
+      "prompt_tokens": 2934,
+      "completion_tokens": 91,
+      "seconds": 47.5,
+      "edits_applied": 1,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "userdb/repo.py"
+      ]
+    },
+    {
+      "case": "sqlalchemy-v2",
+      "repeat": 1,
+      "mode": "agent",
+      "verified": false,
+      "stop_reason": "no-tool-call",
+      "tests_after": "0 passed, 3 failed, 0 errors",
+      "tests_passed": 0,
+      "tests_expected": 3,
+      "steps": 24,
+      "llm_calls": 24,
+      "prompt_tokens": 150552,
+      "completion_tokens": 5874,
+      "seconds": 352.1,
+      "edits_applied": 1,
+      "edits_refused": 0,
+      "guardrail_hits": 0,
+      "rejected_by_verifier": [],
+      "changed_files": [
+        "userdb/repo.py"
+      ]
+    }
+  ]
+}
