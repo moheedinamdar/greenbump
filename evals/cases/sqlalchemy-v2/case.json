@@ -1,0 +1,18 @@
+{
+    "description": "A Core-style data layer written for SQLAlchemy 1.4, after a bump to SQLAlchemy 2",
+    "bumps": [
+        {
+            "package": "sqlalchemy",
+            "from": "1.4.54",
+            "to": "2.1.8"
+        }
+    ],
+    "changelog_urls": [
+        "https://raw.githubusercontent.com/sqlalchemy/sqlalchemy/main/doc/build/changelog/migration_20.rst"
+    ],
+    "notes": [
+        "Engine.execute() was removed: use a connection, and commit (engine.begin())",
+        "select([columns]) list form was removed: select(columns)",
+        "plain SQL strings must be wrapped in text()"
+    ]
+}
