@@ -42,6 +42,10 @@ NUDGE = (
     "Your last reply did not contain a tool call, so nothing happened. Reply again with exactly one tool "
     "call: run_tests to check your work, edit_file to change code, finish when all tests pass, or give_up."
 )
+REPEAT_WARNING = (
+    "\n\nYou made exactly this call before and it failed the same way. Repeating it will not help. "
+    "Read the file again and copy old_text from it, or try a different approach."
+)
 
 
 @dataclass
@@ -70,7 +74,8 @@ def run_agent(
         {"role": "user", "content": case_text + "\n\nDecide which tool to call first."},
     ]
     deadline = time.monotonic() + budget.max_seconds
-    nudges = 0
+    nudges = repeats = 0
+    last_failure = ""
     while stats.steps < budget.max_steps:
         if time.monotonic() > deadline:
             stats.stop_reason = "time-budget"
@@ -123,6 +128,12 @@ def run_agent(
         )
         for call in reply.tool_calls:
             result = toolbox.call(call.name, call.arguments)
+            signature = json.dumps([call.name, call.arguments], sort_keys=True)
+            failed = result.text.startswith(("ERROR", "REFUSED"))
+            repeats = repeats + 1 if failed and signature == last_failure else 0
+            last_failure = signature if failed else ""
+            if repeats:
+                result.text += REPEAT_WARNING
             audit.write(
                 "tool", step=stats.steps, name=call.name, arguments=call.arguments, result=result.text
             )
