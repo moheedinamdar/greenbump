@@ -89,7 +89,9 @@ def test_repeated_failing_call_gets_a_warning(
     mini_repo: Path, tmp_path: Path, python: str, no_changelog: None
 ) -> None:
     bad = {"path": "app.py", "old_text": "return x*3", "new_text": "return x * 2"}
-    client = ScriptedClient([("edit_file", bad), ("edit_file", bad), ("give_up", {"reason": "x"})])
+    client = ScriptedClient(
+        [("edit_file", bad), ("edit_file", {**bad, "replace_all": False}), ("give_up", {"reason": "x"})]
+    )
     run_fix(_req(mini_repo, tmp_path, python), client)
     results = [
         json.loads(line)["result"]
