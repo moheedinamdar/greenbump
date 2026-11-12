@@ -1,0 +1,22 @@
+--- a/ledger/report.py
++++ b/ledger/report.py
+@@ -2,7 +2,7 @@
+ 
+ 
+ def add_row(df, row):
+-    return df.append(row, ignore_index=True)
++    return df._append(row, ignore_index=True)
+ 
+ 
+ def total_by_category(df):
+--- a/tests/test_report.py
++++ b/tests/test_report.py
+@@ -14,7 +14,7 @@
+ 
+ 
+ def test_add_row():
+-    df = add_row(sample(), {"category": "fuel", "kind": "sale", "amount": 30.0})
++    df = add_row(sample(), {'category': 'fuel', 'kind': 'sale', 'amount': 30.0})
+     assert len(df) == 4
+     assert df.iloc[-1]["category"] == "fuel"
+     assert list(df.index) == [0, 1, 2, 3]
