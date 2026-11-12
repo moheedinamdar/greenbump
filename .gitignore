@@ -1,1 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Secrets / local config
+.env
+.env.*
+
+# Caches: fetched changelogs and per-case virtualenvs
+.greenbump-cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Output of `greenbump fix` (work copies, patches, audit logs)
+.greenbump/
+
+# Eval runs keep report, patch and audit log; the copied repos are throwaway
+evals/results/**/work/
+
+# OS / editor
 .DS_Store
+*.swp
+.idea/
+.vscode/
