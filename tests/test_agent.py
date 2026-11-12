@@ -85,6 +85,21 @@ def test_step_budget_stops_the_loop(mini_repo: Path, tmp_path: Path, python: str
     assert not result.verified
 
 
+def test_repeated_failing_call_gets_a_warning(
+    mini_repo: Path, tmp_path: Path, python: str, no_changelog: None
+) -> None:
+    bad = {"path": "app.py", "old_text": "return x*3", "new_text": "return x * 2"}
+    client = ScriptedClient([("edit_file", bad), ("edit_file", bad), ("give_up", {"reason": "x"})])
+    run_fix(_req(mini_repo, tmp_path, python), client)
+    results = [
+        json.loads(line)["result"]
+        for line in (tmp_path / "out" / "audit.jsonl").read_text().splitlines()
+        if json.loads(line)["event"] == "tool"
+    ]
+    assert "exactly this call before" not in results[0]
+    assert "exactly this call before" in results[1]
+
+
 def test_model_that_never_calls_tools_is_stopped(
     mini_repo: Path, tmp_path: Path, python: str, no_changelog: None
 ) -> None:
