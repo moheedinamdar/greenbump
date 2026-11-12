@@ -1,0 +1,11 @@
+--- a/userdb/repo.py
++++ b/userdb/repo.py
+@@ -18,7 +18,7 @@
+ 
+ 
+ def add_user(engine, name, email):
+-    engine.execute(users.insert().values(name=name, email=email))
++    with engine.connect() as conn: conn.execute(users.insert().values(name=name, email=email))
+ 
+ 
+ def user_names(engine):
