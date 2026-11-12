@@ -1,0 +1,9 @@
+--- a/webapp/app.py
++++ b/webapp/app.py
+@@ -1,4 +1,5 @@
+-from flask import Flask, Markup, escape, request
++from flask import Flask, escape, request
++from markupsafe import Markup
+ from werkzeug.urls import url_quote
+ 
+ 
