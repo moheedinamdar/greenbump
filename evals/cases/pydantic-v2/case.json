@@ -1,0 +1,19 @@
+{
+    "description": "Inventory models written for pydantic 1.x, after a bump to pydantic 2",
+    "bumps": [
+        {
+            "package": "pydantic",
+            "from": "1.10.27",
+            "to": "2.14.3"
+        }
+    ],
+    "changelog_urls": [
+        "https://raw.githubusercontent.com/pydantic/pydantic/main/docs/migration.md"
+    ],
+    "notes": [
+        "Field(regex=...) was renamed to pattern=",
+        "@root_validator needs skip_on_failure=True, or becomes @model_validator",
+        "Optional[X] without a default is now required instead of defaulting to None",
+        ".json() no longer accepts json.dumps keyword arguments such as indent and sort_keys"
+    ]
+}
