@@ -1,0 +1,11 @@
+--- a/accounts/schemas.py
++++ b/accounts/schemas.py
+@@ -4,7 +4,7 @@
+ class UserSchema(Schema):
+     name = fields.Str(required=True)
+     email = fields.Email(required=True)
+-    role = fields.Str(missing="viewer")
++    role = fields.Str(default="viewer")
+     active = fields.Bool(default=True)
+     display = fields.Method("get_display", dump_only=True)
+ 
