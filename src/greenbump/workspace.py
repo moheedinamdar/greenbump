@@ -78,7 +78,8 @@ class Workspace:
         count = text.count(old) if old else 0
         if count == 0:
             raise WorkspaceError(
-                f"old_text not found in {rel_path}. Copy it exactly from read_file, without line numbers."
+                f"old_text not found in {rel_path}. Copy it exactly from the file, without line numbers."
+                + _closest_lines(text, old)
             )
         if count > 1 and not replace_all:
             raise WorkspaceError(
@@ -130,3 +131,14 @@ class Workspace:
 
 def _ignore(_dir: str, names: list[str]) -> set[str]:
     return {n for n in names if n in IGNORED_NAMES or n.endswith(".pyc")}
+
+
+def _closest_lines(text: str, old: str, limit: int = 3) -> str:
+    """Real lines that look like the first line of old_text, to show the model what is actually there."""
+    first = next((line.strip() for line in old.splitlines() if line.strip()), "")
+    lines = [line.strip() for line in text.splitlines()]
+    close = difflib.get_close_matches(first, [line for line in lines if line], n=limit, cutoff=0.5)
+    if not close:
+        return ""
+    numbered = [f"{lines.index(c) + 1:>5} | {c}" for c in close]
+    return "\nClosest lines in the file:\n" + "\n".join(numbered)
