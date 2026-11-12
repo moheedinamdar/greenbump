@@ -114,6 +114,7 @@ def build_case(
             if (p.url, p.line) not in seen and len(passages) < max_passages:
                 seen.add((p.url, p.line))
                 passages.append(p)
+    passages.sort(key=lambda p: p.score, reverse=True)
     return CaseFile(bumps, tests, files, other, passages, queries, list(warnings or []))
 
 
