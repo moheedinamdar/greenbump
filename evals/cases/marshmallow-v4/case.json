@@ -1,0 +1,19 @@
+{
+    "description": "Schemas written for marshmallow 3, after a bump to marshmallow 4",
+    "bumps": [
+        {
+            "package": "marshmallow",
+            "from": "3.26.2",
+            "to": "4.4.0"
+        }
+    ],
+    "changelog_urls": [
+        "https://raw.githubusercontent.com/marshmallow-code/marshmallow/dev/docs/upgrading.rst",
+        "https://raw.githubusercontent.com/marshmallow-code/marshmallow/dev/CHANGELOG.rst"
+    ],
+    "notes": [
+        "missing= and default= were removed (load_default= and dump_default=)",
+        "Schema.context was removed (use marshmallow.experimental.context.Context)",
+        "@validates methods now receive a data_key keyword argument"
+    ]
+}
