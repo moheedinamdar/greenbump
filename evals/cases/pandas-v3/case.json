@@ -1,0 +1,19 @@
+{
+    "description": "Report helpers written for pandas 1.x, after a bump to pandas 3",
+    "bumps": [
+        {
+            "package": "pandas",
+            "from": "1.5.3",
+            "to": "3.1.1"
+        }
+    ],
+    "changelog_urls": [
+        "https://raw.githubusercontent.com/pandas-dev/pandas/main/doc/source/whatsnew/v2.0.0.rst",
+        "https://raw.githubusercontent.com/pandas-dev/pandas/main/doc/source/whatsnew/v3.0.0.rst"
+    ],
+    "notes": [
+        "DataFrame.append was removed (use pd.concat)",
+        "Series.iteritems was removed (use .items())",
+        "Copy-on-Write is the default: chained assignment df[col][mask] = x silently does nothing"
+    ]
+}
