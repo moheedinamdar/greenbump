@@ -1,0 +1,39 @@
+{
+  "mode": "single-shot",
+  "model": "ollama:qwen2.5:7b",
+  "verified": false,
+  "stop_reason": "answered",
+  "summary": "Updated the `missing` parameter to `default` in the `UserSchema` class to make it compatible with the new version of marshmallow.",
+  "reasons": [
+    "tests do not pass: 0 passed, 0 failed, 1 errors"
+  ],
+  "tests_before": "0 passed, 0 failed, 1 errors",
+  "tests_after": "0 passed, 0 failed, 1 errors",
+  "tests_passed": 0,
+  "tests_expected": 4,
+  "changed_files": [
+    "accounts/schemas.py"
+  ],
+  "steps": 1,
+  "llm_calls": 1,
+  "prompt_tokens": 2388,
+  "completion_tokens": 83,
+  "seconds": 74.2,
+  "edits_applied": 1,
+  "edits_refused": 0,
+  "test_runs": 2,
+  "guardrail_hits": [],
+  "changelog_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/marshmallow-code/marshmallow/dev/docs/upgrading.rst",
+      "sha256": "0c4d42b9c64b8e19ac5db58831f3302b7eae5f3b86e48f1660bcc6131925d5f2"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/marshmallow-code/marshmallow/dev/CHANGELOG.rst",
+      "sha256": "5bcf983b89b0db80647dabc78868790429ea2042a49f9223bc7011663468f54f"
+    }
+  ],
+  "warnings": [],
+  "error": "",
+  "diff": "--- a/accounts/schemas.py\n+++ b/accounts/schemas.py\n@@ -4,7 +4,7 @@\n class UserSchema(Schema):\n     name = fields.Str(required=True)\n     email = fields.Email(required=True)\n-    role = fields.Str(missing=\"viewer\")\n+    role = fields.Str(default=\"viewer\")\n     active = fields.Bool(default=True)\n     display = fields.Method(\"get_display\", dump_only=True)\n \n"
+}
