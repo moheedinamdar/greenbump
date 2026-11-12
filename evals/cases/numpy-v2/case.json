@@ -1,0 +1,21 @@
+{
+    "description": "Statistics helpers written for NumPy 1.x, after a bump to NumPy 2",
+    "bumps": [
+        {
+            "package": "numpy",
+            "from": "1.26.4",
+            "to": "2.5.4"
+        }
+    ],
+    "min_python": "3.12",
+    "changelog_urls": [
+        "https://raw.githubusercontent.com/numpy/numpy/main/doc/source/numpy_2_0_migration_guide.rst",
+        "https://raw.githubusercontent.com/numpy/numpy/main/doc/source/release/2.0.0-notes.rst"
+    ],
+    "notes": [
+        "np.float_ was removed (use np.float64)",
+        "np.NaN was removed (use np.nan)",
+        "np.product was removed (use np.prod)",
+        "np.alltrue was removed (use np.all)"
+    ]
+}
