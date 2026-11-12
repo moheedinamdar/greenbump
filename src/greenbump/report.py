@@ -17,7 +17,7 @@ def render_report(result: FixResult, final_tests: TestRun | None) -> str:
         f"# greenbump: {verdict}",
         "",
         f"- Mode: `{result.mode}`, model: `{result.model}`",
-        f"- Agent stopped because: `{result.stop_reason}`",
+        f"- Stopped because: `{result.stop_reason}`",
         f"- Tests before: {result.tests_before}",
         f"- Tests after: {result.tests_after} (repository defines {result.tests_expected} test functions)",
         f"- Steps: {result.steps}, model calls: {result.llm_calls}, "
