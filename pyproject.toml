@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=84.2.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "greenbump"
+version = "0.1.0"
+description = "An AI agent that fixes Python code broken by a dependency upgrade, with guardrails and an eval harness"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "Moheed Inamdar" }]
+dependencies = []
+keywords = ["ai-agent", "llm", "dependency-management", "renovate", "dependabot", "devsecops"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.scripts]
+greenbump = "greenbump.cli:main"
+
+[project.urls]
+Repository = "https://github.com/moheedinamdar/greenbump"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra --strict-markers"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+src = ["src", "tests"]
+extend-exclude = ["evals/cases", "evals/results"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+# Running pytest in a child process is the point of these modules.
+"src/greenbump/runner.py" = ["S603"]
+"src/greenbump/evals.py" = ["S603"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["greenbump", "conftest"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src", "tests"]
+mypy_path = "src:tests"
