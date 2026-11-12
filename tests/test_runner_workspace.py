@@ -51,6 +51,8 @@ def test_replace_unique_ambiguous_and_missing(mini_repo: Path, tmp_path: Path) -
     assert ws.replace("dup.py", "a = 1", "a = 2", replace_all=True) == 2
     with pytest.raises(WorkspaceError, match="not found"):
         ws.replace("app.py", "nope", "x")
+    with pytest.raises(WorkspaceError, match=r"Closest lines in the file:\n    2 \| return x \* 3"):
+        ws.replace("app.py", "return x*3", "return x * 2")
     with pytest.raises(WorkspaceError, match="only edits existing files"):
         ws.write("new.py", "x = 1\n")
 
